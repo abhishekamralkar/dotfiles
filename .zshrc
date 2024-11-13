@@ -71,4 +71,4 @@ alias grep="rg"
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/config.toml)"
+eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/base.toml)"
