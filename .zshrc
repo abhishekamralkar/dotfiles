@@ -9,6 +9,9 @@ fi
 source "${ZINIT_HOME}/zinit.zsh"
 zinit ice depth=1; 
 
+# BREW PATH
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # Add in zsh-plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
