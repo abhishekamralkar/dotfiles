@@ -1,0 +1,57 @@
+# Fonts
+font-family = Fira Code
+font-size = 16
+font-feature = liga
+
+# Theme
+#theme = light:AtomOneLight,dark:Dracula+
+theme = Dracula+
+
+# Split Vertical/Horizontal
+keybind = ctrl+v=new_split:right
+keybind = ctrl+h=new_split:down
+keybind = ctrl+z=close_surface
+keybind = global:cmd+s=toggle_quick_terminal
+
+# Cursor
+cursor-style = block
+cursor-style-blink = false
+cursor-style-blink = false
+
+# clipboard
+copy-on-select = clipboard
+clipboard-trim-trailing-spaces = true
+
+# mouse
+mouse-scroll-multiplier = 2
+mouse-hide-while-typing = true
+click-repeat-interval = 500
+
+# Opacity
+#background-opacity = 0.65
+
+# window
+initial-window = true
+resize-overlay = never
+window-save-state = always
+window-step-resize = false
+background-blur-radius = 15
+window-padding-balance = true
+confirm-close-surface = false
+quit-after-last-window-closed = true
+
+# behavior
+auto-update = check
+auto-update-channel = stable
+quit-after-last-window-closed = true
+shell-integration-features = true
+
+# macos
+macos-option-as-alt = true
+macos-titlebar-style = transparent
+
+# Misc
+shell-integration-features = no-cursor,sudo,no-title
+confirm-close-surface = false
+auto-update-channel = stable
+command = /bin/zsh
