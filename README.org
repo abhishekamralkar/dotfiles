@@ -3,10 +3,10 @@
 STOW (Store in Warehouse) is a command-line utility that uses symlinks to manage configuration files. This tool is particularly useful for maintaining dotfiles in a central directory, keeping your home directory clean, and allowing easy version control and deployment across different systems.
 
 ** Key Features
-- **Symlink Management**: Creates symbolic links, avoiding duplication.
-- **Easy Deployment**: Simplifies deploying configurations across multiple systems.
-- **Version Control Friendly**: Works seamlessly with Git and other VCS tools.
-- **Modularity**: Allows managing different sets of configurations as separate packages.
+  ***Symlink Management**: Creates symbolic links, avoiding duplication.
+  ***Easy Deployment**: Simplifies deploying configurations across multiple systems.
+  ***Version Control Friendly**: Works seamlessly with Git and other VCS tools.
+  ***Modularity**: Allows managing different sets of configurations as separate packages.
 
 ** Installation
 To install STOW, use the following command on Debian-based systems:
