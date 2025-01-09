@@ -1,36 +1,39 @@
-# Fonts
+#[Fonts]
 font-family = Fira Code
 font-size = 16
 font-feature = liga
 
-# Theme
+#[Theme]
 #theme = light:AtomOneLight,dark:Dracula+
 theme = Dracula+
 
-# Split Vertical/Horizontal
+#[Keybindings]
 keybind = ctrl+v=new_split:right
 keybind = ctrl+h=new_split:down
 keybind = ctrl+z=close_surface
 keybind = global:cmd+s=toggle_quick_terminal
+keybind = shift+ctrl+left_bracket=previous_tab
+keybind = shift+ctrl+right_bracket=next_tab
+keybind = shift+ctrl+,=move_tab:-1
+keybind = shift+ctrl+.=move_tab:+1
 
-# Cursor
+#[Cursor]
 cursor-style = block
-cursor-style-blink = false
-cursor-style-blink = false
+cursor-style-blink = true	
 
-# clipboard
+#[Clipboard]
 copy-on-select = clipboard
 clipboard-trim-trailing-spaces = true
 
-# mouse
+#[Mouse]
 mouse-scroll-multiplier = 2
 mouse-hide-while-typing = true
 click-repeat-interval = 500
 
-# Opacity
-#background-opacity = 0.65
+#[Opacity]
+background-opacity = 0.95
 
-# window
+#[Window]
 initial-window = true
 resize-overlay = never
 window-save-state = always
@@ -40,17 +43,19 @@ window-padding-balance = true
 confirm-close-surface = false
 quit-after-last-window-closed = true
 
-# behavior
+#[Behavior]
 auto-update = check
 auto-update-channel = stable
 quit-after-last-window-closed = true
 shell-integration-features = true
 
-# macos
+#[MacOS]
 macos-option-as-alt = true
 macos-titlebar-style = transparent
+#macos-titlebar-style = tabs
+macos-titlebar-proxy-icon = hidden
 
-# Misc
+#[Misc]
 shell-integration-features = no-cursor,sudo,no-title
 confirm-close-surface = false
 auto-update-channel = stable
