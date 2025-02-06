@@ -1,0 +1,63 @@
+#[Fonts]
+font-family = Fira Code
+font-size = 16
+font-feature = liga
+
+#[Theme]
+#theme = light:AtomOneLight,dark:Dracula+
+theme = Dracula+
+
+#[Keybindings]
+keybind = ctrl+v=new_split:right
+keybind = ctrl+h=new_split:down
+keybind = ctrl+z=close_surface
+keybind = global:cmd+s=toggle_quick_terminal
+keybind = shift+ctrl+left_bracket=previous_tab
+keybind = shift+ctrl+right_bracket=next_tab
+keybind = shift+ctrl+,=move_tab:-1
+keybind = shift+ctrl+.=move_tab:+1
+keybind = shift+cmd+,=reload_config
+
+#[Cursor]
+cursor-style = block
+cursor-style-blink = true	
+
+#[Clipboard]
+copy-on-select = clipboard
+clipboard-trim-trailing-spaces = true
+
+#[Mouse]
+mouse-scroll-multiplier = 2
+mouse-hide-while-typing = true
+click-repeat-interval = 500
+
+#[Opacity]
+background-opacity = 0.95
+
+#[Window]
+initial-window = true
+resize-overlay = never
+window-save-state = always
+window-step-resize = false
+background-blur-radius = 15
+window-padding-balance = true
+confirm-close-surface = false
+quit-after-last-window-closed = true
+
+#[Behavior]
+auto-update = check
+auto-update-channel = stable
+quit-after-last-window-closed = true
+shell-integration-features = true
+
+#[MacOS]
+macos-option-as-alt = true
+macos-titlebar-style = transparent
+#macos-titlebar-style = tabs
+macos-titlebar-proxy-icon = hidden
+
+#[Misc]
+shell-integration-features = no-cursor,sudo,no-title
+confirm-close-surface = false
+auto-update-channel = stable
+command = /bin/zsh

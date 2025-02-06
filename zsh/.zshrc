@@ -10,7 +10,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit ice depth=1; 
 
 # BREW PATH
-eval "$(/opt/homebrew/bin/brew shellenv)"
+#eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Add in zsh-plugins
 zinit light zsh-users/zsh-syntax-highlighting
@@ -21,7 +21,6 @@ zinit light Aloxaf/fzf-tab
 # Add in snippets
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
-#zinit snippet OMZP::macos
 zinit snippet OMZP::aws
 zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
@@ -67,11 +66,11 @@ alias k="kubectl"
 alias cat="bat"
 alias ls="eza --color=always --long --git --icons=always"
 alias man="tldr"
-#alias cd="z"
+alias cd="z"
 alias du="dust"
 alias grep="rg"
 
 # Shell integrations
-eval "$(fzf --zsh)"
-eval "$(zoxide init --cmd cd zsh)"
-eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/base.toml)"
+#source <(fzf --zsh)
+eval "$(zoxide init zsh)"
+eval "$(oh-my-posh init zsh --config /home/aaa/.config/ohmyposh/base.toml)"
