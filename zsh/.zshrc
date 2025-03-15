@@ -60,6 +60,7 @@ export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
+export PATH=$PATH:~/Bin
 # Aliases
 alias ls='ls --color'
 alias k="kubectl"
@@ -71,6 +72,9 @@ alias du="dust"
 alias grep="rg"
 
 # Shell integrations
-#source <(fzf --zsh)
+source <(fzf --zsh)
+. "$HOME/.cargo/env"
 eval "$(zoxide init zsh)"
-eval "$(oh-my-posh init zsh --config /home/aaa/.config/ohmyposh/base.toml)"
+eval "$(oh-my-posh init zsh --config /home/abhishekamralkar/.config/ohmyposh/base.toml)"
+
+[ -f ~/Bin/.fzf/.fzf.zsh ] && source ~/Bin/.fzf/.fzf.zsh

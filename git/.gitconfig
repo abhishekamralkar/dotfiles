@@ -4,7 +4,7 @@
 [user]
 	name = Abhishek Amralkar
 	email = abhishekamralkar@gmail.com
-	signinkey = B284BBC489A5F6EC
+	signinkey = 8F35A62D3F33ED00
 [core]
 	editor = emacs
         pager = delta	
