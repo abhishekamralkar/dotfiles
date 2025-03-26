@@ -4,29 +4,45 @@ local wezterm = require 'wezterm'
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
--- This is where you actually apply your config choices
--- Spawn a zsh shell in login mode
-config.default_prog = { '/usr/bin/zsh' }
-
--- For example, changing the color scheme:
-config.color_scheme = 'Batman'
-config.tab_bar_at_bottom = true
-config.use_fancy_tab_bar = true
-config.scrollback_lines = 100000
-config.window_padding = {
-  left = 0,
-  right = 0,
-  top = 0,
-  bottom = 0,
+config = {
+	automatically_reload_config = true,
+	enable_tab_bar = true,
+	window_close_confirmation = "NeverPrompt",
+	window_decorations = "RESIZE",
+	default_cursor_style = "BlinkingBar",
+	color_scheme = "Nord (Gogh)",
+	font = wezterm.font("JetBrains Mono", { weight = "Bold" }),
+	font_size = 12.5,
+	default_prog = { "/usr/bin/zsh" },
+	background = {
+		{
+			source = {
+				File = "",
+			},
+			hsb = {
+				hue = 1.0,
+				saturation = 1.02,
+				brightness = 0.25,
+			},
+			width = "100%",
+			height = "100%",
+		},
+		{
+			source = {
+				Color = "#282c35",
+			},
+			width = "100%",
+			height = "100%",
+			opacity = 0.55,
+		},
+	},
+	window_padding = {
+		left = 3,
+		right = 3,
+		top = 0,
+		bottom = 0,
+	},
 }
--- Font
-config.font = wezterm.font('MesloLGS Nerd Font Mono')
-config.font_size = 12
-
-config.enable_tab_bar = false
-
-config.default_cursor_style = 'BlinkingBar'
-config.window_decorations = 'RESIZE'
 
 -- and finally, return the configuration to wezterm
 return config
