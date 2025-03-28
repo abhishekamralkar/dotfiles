@@ -10,7 +10,9 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit ice depth=1; 
 
 # BREW PATH
-#eval "$(/opt/homebrew/bin/brew shellenv)"
+if [ "$(uname)" = "Darwin" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)" # macOS Homebrew path
+fi
 
 # Add in zsh-plugins
 zinit light zsh-users/zsh-syntax-highlighting
@@ -56,16 +58,20 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # GO
-export PATH=$PATH:/usr/local/go/bin
+if [ "$(uname)" = "Darwin" ]; then
+    export PATH=$PATH:/usr/local/go/bin
+else
+    export PATH=$PATH:/usr/local/go/bin
+fi
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 export PATH=$PATH:~/Bin
+
 # Aliases
-alias ls='ls --color'
+alias ls="eza --color=always --long --git --icons=always" # Removed duplicate alias for 'ls'
 alias k="kubectl"
 alias cat="bat"
-alias ls="eza --color=always --long --git --icons=always"
 alias man="tldr"
 alias cd="z"
 alias du="dust"
@@ -75,6 +81,7 @@ alias grep="rg"
 source <(fzf --zsh)
 . "$HOME/.cargo/env"
 eval "$(zoxide init zsh)"
-eval "$(oh-my-posh init zsh --config /home/abhishekamralkar/.config/ohmyposh/base.toml)"
+eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/base.toml)"
 
+# Ensure fzf.zsh is sourced if it exists
 [ -f ~/Bin/.fzf/.fzf.zsh ] && source ~/Bin/.fzf/.fzf.zsh
