@@ -67,6 +67,7 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 export PATH=$PATH:~/Bin
+export AWS_CLI_AUTO_PROMPT=on
 
 # Aliases
 alias ls="eza --color=always --long --git --icons=always" # Removed duplicate alias for 'ls'
