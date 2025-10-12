@@ -63,11 +63,14 @@ if [ "$(uname)" = "Darwin" ]; then
 else
     export PATH=$PATH:/usr/local/go/bin
 fi
+
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 export PATH=$PATH:~/Bin
+<<<<<<< HEAD
 export AWS_CLI_AUTO_PROMPT=on
+export PATH=$PATH:~/.local/bin
 
 # Aliases
 alias ls="eza --color=always --long --git --icons=always" # Removed duplicate alias for 'ls'
@@ -77,6 +80,10 @@ alias man="tldr"
 alias cd="z"
 alias du="dust"
 alias grep="rg"
+alias ping="gping"
+alias top="btm"
+alias htop="btm"
+alias tree="eza"
 
 # Shell integrations
 source <(fzf --zsh)
@@ -86,3 +93,6 @@ eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/base.toml)"
 
 # Ensure fzf.zsh is sourced if it exists
 [ -f ~/Bin/.fzf/.fzf.zsh ] && source ~/Bin/.fzf/.fzf.zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(atuin init zsh)"
