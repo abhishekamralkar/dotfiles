@@ -2,14 +2,11 @@
 # Zinit Plugin Manager Setup
 # ============================================================================
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-
 if [ ! -d "$ZINIT_HOME" ]; then
     mkdir -p "$(dirname "$ZINIT_HOME")"
     git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
-
 source "${ZINIT_HOME}/zinit.zsh" 
-
 
 # ============================================================================
 # Homebrew (macOS)
@@ -19,12 +16,12 @@ if [[ "$(uname)" == "Darwin" ]]; then
 fi
 
 # ============================================================================
-# Plugins
+# Plugins (Order: completions -> suggestions -> tab -> highlight)
 # ============================================================================
-zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
+zinit light zsh-users/zsh-syntax-highlighting
 
 # ============================================================================
 # Oh-My-Zsh Plugins (Snippets)
@@ -34,13 +31,17 @@ zinit snippet OMZP::sudo
 zinit snippet OMZP::aws
 zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
-zinit snippet OMZP::command-not-found
 
 # ============================================================================
-# Completions
+# Completions & Styling
 # ============================================================================
 autoload -U compinit && compinit
 zinit cdreplay -q
+
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -1 --color=always $realpath'
 
 # ============================================================================
 # Keybindings
@@ -50,76 +51,70 @@ bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
 # ============================================================================
-# History
+# Environment & Path
 # ============================================================================
+export GOPATH=$HOME/go
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin:~/Bin:~/.local/bin:~/.opencode/bin
+export AWS_CLI_AUTO_PROMPT=on
+
+# History (Atuin will take over, but we keep these for fallback)
 HISTSIZE=100000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
-setopt appendhistory
-setopt sharehistory
-setopt hist_ignore_space
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt hist_ignore_dups
-setopt hist_find_no_dups
+setopt appendhistory sharehistory hist_ignore_space hist_ignore_all_dups
 
 # ============================================================================
-# Completion Styling
+# --- Modern Rust Replacements & Aliases ---
 # ============================================================================
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-# ============================================================================
-# Environment Variables - Programming Languages
-# ============================================================================
-# Go
-export GOPATH=$HOME/go
-export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+# eza (Modern ls)
+if command -v eza >/dev/null; then
+  alias ls='eza --icons --group-directories-first'
+  alias ll='eza -lh --icons --git --group-directories-first'
+  alias lt='eza --tree --level=2 --icons'
+  alias tree="eza --tree --icons"
+fi
 
-# ============================================================================
-# Environment Variables - User Paths
-# ============================================================================
-export PATH=$PATH:~/Bin
-export PATH=$PATH:~/.local/bin
-export PATH=$PATH:/home/aaa/.opencode/bin
-export AWS_CLI_AUTO_PROMPT=on
+# bat (Modern cat)
+if command -v bat >/dev/null; then
+  alias cat='bat --style=plain'
+  alias bathelp='bat --plain --language=help'
+  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+fi
 
-# ============================================================================
-# Aliases - Navigation & File Operations
-# ============================================================================
-alias ls="eza --color=always --long --git --icons=always"
-alias tree="eza"
-alias cat="bat"
-alias grep="rg"
-alias du="dust"
+# Search & Disk (rg, fd, dust)
+alias find='fd'
+alias grep='rg'
+alias du='dust'
 
-# ============================================================================
-# Aliases - System
-# ============================================================================
+# System Monitoring & Utilities
 alias k="kubectl"
 alias man="tldr"
 alias ping="gping"
 alias top="btm"
 alias htop="btm"
-alias cd="z"
 
 # ============================================================================
-# Shell Integrations
+# Shell Integrations (Initializations)
 # ============================================================================
+
 # Cargo (Rust)
 [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
-# Zoxide (directory jumping)
-eval "$(zoxide init zsh)"
+# Zoxide (Smarter cd)
+if command -v zoxide >/dev/null; then
+  eval "$(zoxide init zsh)"
+  alias cd='z'
+  alias zi='z -i'
+fi
 
-# Oh My Posh (prompt)
-eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/base.toml)"
+# Atuin (Magic Shell History)
+if command -v atuin >/dev/null; then
+  eval "$(atuin init zsh)"
+fi
 
-# FZF (fuzzy finder)
+# FZF
 eval "$(fzf --zsh)" 2>/dev/null || true
 
-# Atuin (shell history)
-eval "$(atuin init zsh)"
+# Oh My Posh (Prompt) - Keep this at the very end
+eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/base.toml)"
