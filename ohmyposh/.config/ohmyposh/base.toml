@@ -1,4 +1,5 @@
-console_title_template = '{{ .Shell }} in {{ .Folder }}'
+# base.toml
+console_title_template = '{{ .UserName }}@{{ .HostName }}: {{ .Folder }} — {{ .Shell }}'
 version = 3
 final_space = true
 
@@ -12,59 +13,93 @@ final_space = true
   background = 'transparent'
   foreground_templates = ['{{if gt .Code 0}}red{{end}}', '{{if eq .Code 0}}magenta{{end}}']
 
+# Left prompt: path (compact), Git, Python venv
 [[blocks]]
   type = 'prompt'
   alignment = 'left'
   newline = true
 
   [[blocks.segments]]
-    template = '{{ .Path }}'
-    foreground = 'blue'
-    background = 'transparent'
     type = 'path'
-    style = 'plain'
+    template = '{{ .Path }}'
+    foreground = 'cyan'
+    background = 'transparent'
+    style = 'short'
 
     [blocks.segments.properties]
-      cache_duration = 'none'
+      cache_duration = '1s'
       style = 'full'
 
   [[blocks.segments]]
-    template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
+    type = 'git'
+    template = ' {{ if .Data.Dir }} {{ .Data.HEAD }}{{ if or (.Data.Working.Changed) (.Data.Staging.Changed) }} *{{ end }}{{ if gt .Data.Ahead 0 }} ⇡{{ .Data.Ahead }}{{ end }}{{ if gt .Data.Behind 0 }} ⇣{{ .Data.Behind }}{{ end }}{{ end }}'
     foreground = 'p:grey'
     background = 'transparent'
-    type = 'git'
     style = 'plain'
 
     [blocks.segments.properties]
       branch_icon = ''
-      cache_duration = 'none'
+      cache_duration = '5s'
       commit_icon = '@'
       fetch_status = true
 
+  [[blocks.segments]]
+    type = 'python'
+    template = '{{ if .VirtualEnv }}(venv: {{ .VirtualEnv }}){{ end }}'
+    foreground = 'yellow'
+    background = 'transparent'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+# Right prompt: time, execution time, battery
 [[blocks]]
   type = 'rprompt'
   overflow = 'hidden'
 
   [[blocks.segments]]
+    type = 'time'
+    foreground = 'brightblack'
+    background = 'transparent'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = '60s'
+      format = '15:04'
+
+  [[blocks.segments]]
+    type = 'executiontime'
     template = '{{ .FormattedMs }}'
     foreground = 'yellow'
     background = 'transparent'
-    type = 'executiontime'
     style = 'plain'
 
     [blocks.segments.properties]
       cache_duration = 'none'
       threshold = 5000
 
+  [[blocks.segments]]
+    type = 'battery'
+    template = '{{ if .Percentage }}🔋{{ .Percentage }}%{{ end }}'
+    foreground = 'green'
+    background = 'transparent'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = '30s'
+      show_designator = false
+
+# Final prompt symbol: color indicates last exit code
 [[blocks]]
   type = 'prompt'
   alignment = 'left'
   newline = true
 
   [[blocks.segments]]
+    type = 'text'
     template = '❯'
     background = 'transparent'
-    type = 'text'
     style = 'plain'
     foreground_templates = ['{{if gt .Code 0}}red{{end}}', '{{if eq .Code 0}}magenta{{end}}']
 
