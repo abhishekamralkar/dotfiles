@@ -25,7 +25,7 @@ config.tab_max_width = 32
 -- Font Configuration
 -- ============================================================================
 config.font = wezterm.font("Roboto Mono")
-config.font_size = 12.5
+config.font_size = 13.0
 config.line_height = 1.2
 config.anti_alias_custom_block_glyphs = true
 
@@ -61,7 +61,7 @@ config.enable_wayland = true
 config.keys = {
 	-- Split pane vertically (right)
 	{
-		key = "v",
+		key = "w",
 		mods = "CTRL|SHIFT",
 		action = wezterm.action.SplitPane {
 			direction = "Right",

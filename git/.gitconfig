@@ -26,3 +26,5 @@
 	autocorrect = 10
 [alias]
 	last = log -1 HEAD
+[credential]
+	helper = store
