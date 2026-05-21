@@ -20,7 +20,7 @@ keybind = shift+cmd+,=reload_config
 
 #[Cursor]
 cursor-style = block
-cursor-style-blink = true	
+cursor-style-blink = true
 
 #[Clipboard]
 copy-on-select = clipboard
@@ -41,14 +41,11 @@ window-save-state = always
 window-step-resize = false
 background-blur-radius = 15
 window-padding-balance = true
-confirm-close-surface = false
 quit-after-last-window-closed = true
 
 #[Behavior]
 auto-update = check
 auto-update-channel = stable
-quit-after-last-window-closed = true
-shell-integration-features = true
 
 #[MacOS]
 macos-option-as-alt = true
@@ -57,7 +54,4 @@ macos-titlebar-style = transparent
 macos-titlebar-proxy-icon = hidden
 
 #[Misc]
-shell-integration-features = no-cursor,sudo,no-title
-confirm-close-surface = false
-auto-update-channel = stable
 command = /bin/zsh
