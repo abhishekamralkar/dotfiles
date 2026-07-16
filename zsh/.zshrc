@@ -40,6 +40,8 @@ zinit cdreplay -q
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/compcache"
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -1 --color=always $realpath'
 
@@ -54,7 +56,7 @@ bindkey '^n' history-search-forward
 # Environment & Path
 # ============================================================================
 export GOPATH=$HOME/go
-export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin:~/Bin:~/.local/bin:~/.opencode/bin
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin:~/bin:~/.local/bin:~/.opencode/bin:~/.local/bin/claude
 export AWS_CLI_AUTO_PROMPT=on
 
 # History (Atuin will take over, but we keep these for fallback)
@@ -62,6 +64,11 @@ HISTSIZE=100000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
 setopt appendhistory sharehistory hist_ignore_space hist_ignore_all_dups
+setopt inc_append_history extended_history hist_expire_dups_first hist_verify
+
+# Default editor
+export EDITOR='vim'
+export VISUAL="$EDITOR"
 
 # ============================================================================
 # --- Modern Rust Replacements & Aliases ---
@@ -114,7 +121,14 @@ if command -v atuin >/dev/null; then
 fi
 
 # FZF
-eval "$(fzf --zsh)" 2>/dev/null || true
+if command -v fzf >/dev/null; then
+  if fzf --zsh >/dev/null 2>&1; then
+    eval "$(fzf --zsh)"
+  else
+    [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
+    [ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
+  fi
+fi
 
 # Oh My Posh (Prompt) - Keep this at the very end
 eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/base.toml)"

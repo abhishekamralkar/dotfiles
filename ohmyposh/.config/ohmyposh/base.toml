@@ -4,12 +4,12 @@ version = 3
 final_space = true
 
 [secondary_prompt]
-  template = 'ॐॐ > '
+  template = 'λλ > '
   foreground = 'magenta'
   background = 'transparent'
 
 [transient_prompt]
-  template = 'ॐ > '
+  template = 'λ > '
   background = 'transparent'
   foreground_templates = ['{{if gt .Code 0}}red{{end}}', '{{if eq .Code 0}}magenta{{end}}']
 
@@ -24,15 +24,15 @@ final_space = true
     template = '{{ .Path }}'
     foreground = 'cyan'
     background = 'transparent'
-    style = 'short'
+    style = 'plain'
 
     [blocks.segments.properties]
       cache_duration = '1s'
-      style = 'full'
+      style = 'letter'
 
   [[blocks.segments]]
     type = 'git'
-    template = ' {{ if .Data.Dir }} {{ .Data.HEAD }}{{ if or (.Data.Working.Changed) (.Data.Staging.Changed) }} *{{ end }}{{ if gt .Data.Ahead 0 }} ⇡{{ .Data.Ahead }}{{ end }}{{ if gt .Data.Behind 0 }} ⇣{{ .Data.Behind }}{{ end }}{{ end }}'
+    template = ' {{ if .Data.Dir }} {{ .Data.HEAD }}{{ if or (.Data.Working.Changed) (.Data.Staging.Changed) }} *{{ end }}{{ if gt .Data.Ahead 0 }} ⇡{{ .Data.Ahead }}{{ end }}{{ if gt .Data.Behind 0 }} ⇣{{ .Data.Behind }}{{ end }}{{ end }}'
     foreground = 'p:grey'
     background = 'transparent'
     style = 'plain'
@@ -98,7 +98,7 @@ final_space = true
 
   [[blocks.segments]]
     type = 'text'
-    template = 'ॐ > '
+    template = 'λ > '
     background = 'transparent'
     style = 'plain'
     foreground_templates = ['{{if gt .Code 0}}red{{end}}', '{{if eq .Code 0}}magenta{{end}}']
