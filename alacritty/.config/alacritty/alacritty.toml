@@ -1,0 +1,90 @@
+[general]
+live_config_reload = true
+
+[env]
+TERM = "xterm-256color"
+
+[terminal.shell]
+program = "/usr/bin/zsh"
+args = ["--login"]
+
+[font]
+size = 16
+
+[font.normal]
+family = "FiraCode Nerd Font Mono"
+style = "Regular"
+
+[font.bold]
+family = "FiraCode Nerd Font Mono"
+style = "Bold"
+
+[font.italic]
+family = "FiraCode Nerd Font Mono"
+style = "Italic"
+
+[window]
+opacity = 0.95
+padding = { x = 10, y = 10 }
+decorations = "full"
+dynamic_title = true
+
+[cursor]
+style = { shape = "Block", blinking = "On" }
+
+[mouse]
+hide_when_typing = true
+
+[selection]
+save_to_clipboard = true
+
+[scrolling]
+multiplier = 2
+
+# Dracula theme
+[colors.primary]
+background = "#282a36"
+foreground = "#f8f8f2"
+dim_foreground = "#f8f8f2"
+bright_foreground = "#ffffff"
+
+[colors.cursor]
+text = "#282a36"
+cursor = "#f8f8f2"
+
+[colors.vi_mode_cursor]
+text = "#282a36"
+cursor = "#f8f8f2"
+
+[colors.selection]
+text = "CellForeground"
+background = "#44475a"
+
+[colors.search.matches]
+foreground = "CellBackground"
+background = "#44475a"
+
+[colors.search.focused_match]
+foreground = "CellBackground"
+background = "#50fa7b"
+
+[colors.normal]
+black = "#21222c"
+red = "#ff5555"
+green = "#50fa7b"
+yellow = "#f1fa8c"
+blue = "#bd93f9"
+magenta = "#ff79c6"
+cyan = "#8be9fd"
+white = "#f8f8f2"
+
+[colors.bright]
+black = "#6272a4"
+red = "#ff6e6e"
+green = "#69ff94"
+yellow = "#ffffa5"
+blue = "#d6acff"
+magenta = "#ff92df"
+cyan = "#a4ffff"
+white = "#ffffff"
+
