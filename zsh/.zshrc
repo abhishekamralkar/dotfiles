@@ -100,7 +100,7 @@ alias man="tldr"
 alias ping="gping"
 alias top="btm"
 alias htop="btm"
-
+alias vim="nvim"
 # ============================================================================
 # Shell Integrations (Initializations)
 # ============================================================================
